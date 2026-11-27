@@ -1,13 +1,11 @@
 import pygame
 from pygame.locals import *
 from sys import exit
+from settings import *
 
 pygame.init()
 
-largura = 640
-altura = 480
-
-tela = pygame.display.set_mode((largura, altura))
+tela = pygame.display.set_mode((WIDTH, HEIGHT))
 
 while True:
     for event in pygame.event.get():
