@@ -16,3 +16,15 @@ class Player:
     def move(self, keys, walls):
         dx = 0
         dy = 0
+
+        if keys[pygame.K_w]:
+            dy = -self.speed
+
+        if keys[pygame.K_s]:
+            dy = self.speed
+
+        if keys[pygame.K_a]:
+            dx = -self.speed
+
+        if keys[pygame.K_d]:
+            dx = self.speed
