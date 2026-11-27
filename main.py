@@ -28,15 +28,20 @@ while game_ativo:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if cena == "inicio":
                 if botao_jogar.collidepoint(evento.pos):
-                    cena == "primeira_fase"
+                    cena = "primeira_fase"
                 elif botao_sair.collidepoint(evento.pos):
                     game_ativo = False
                 elif botao_creditos.collidepoint(evento.pos):
                     cena = "creditos"
     
 
+# MUDANÇA DE CENA
     if cena == "inicio":
         janela.blit(tela_inicial, (0, 0))
+    elif cena == "primeira_fase":
+        janela.fill((0, 100, 0))
+    elif cena == "creditos":
+        janela.fill((100, 0, 0))
 
 
 
