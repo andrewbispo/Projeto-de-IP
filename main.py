@@ -2,8 +2,12 @@ import pygame
 
 largura = 1200
 altura = 896
+
+# CENAS E SEUS CAMINHOS 
 tela_inicial = pygame.image.load("src/imagens/Tela_inicial.jpg")
 tela_inicial = pygame.transform.scale(tela_inicial, (largura, altura))
+
+
 pygame.init()
 janela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Pelas Ruas Que Andei")
@@ -22,9 +26,19 @@ while game_ativo:
         if evento.type == pygame.QUIT:
             game_ativo = False
         if evento.type == pygame.MOUSEBUTTONDOWN:
-            print(evento.pos)
+            if cena == "inicio":
+                if botao_jogar.collidepoint(evento.pos):
+                    cena == "primeira_fase"
+                elif botao_sair.collidepoint(evento.pos):
+                    game_ativo = False
+                elif botao_creditos.collidepoint(evento.pos):
+                    cena = "creditos"
     
 
     if cena == "inicio":
         janela.blit(tela_inicial, (0, 0))
-        pygame.display.flip()
+
+
+
+
+    pygame.display.flip()
