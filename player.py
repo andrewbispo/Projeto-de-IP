@@ -28,3 +28,44 @@ class Player:
 
         if keys[pygame.K_d]:
             dx = self.speed
+
+        # Movimento horizontal
+        self.rect.x += dx
+
+        for wall in walls:
+            if self.rect.colliderect(wall):
+                if dx > 0:
+                    self.rect.right = wall.left
+                elif dx < 0:
+                    self.rect.left = wall.right
+
+        # Movimento vertical
+        self.rect.y += dy
+
+        for wall in walls:
+            if self.rect.colliderect(wall):
+                if dy > 0:
+                    self.rect.bottom = wall.top
+                elif dy < 0:
+                    self.rect.top = wall.bottom
+
+    def activate_boost(self):
+        self.speed = BOOST_SPEED
+        self.boost_active = True
+        self.boost_end = pygame.time.get_ticks() + BOOST_DURATION
+
+    def update(self):
+        now = pygame.time.get_ticks()
+
+        if self.boost_active and now >= self.boost_end:
+            self.speed = PLAYER_SPEED
+            self.boost_active = False
+
+    def take_damage(self):
+        now = pygame.time.get_ticks()
+
+        if now < self.invulnerable_until:
+            return
+
+        self.lives -= 1
+        self.invulnerable_until = now + 1500
