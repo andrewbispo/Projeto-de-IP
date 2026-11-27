@@ -1,4 +1,9 @@
 import pygame
+import pygame
+from pygame.locals import *
+from sys import exit
+from settings import *
+
 
 largura = 1200
 altura = 896
@@ -20,8 +25,8 @@ botao_creditos = pygame.Rect(953, 777, 199, 78)
 
 game_ativo = True
 
-while game_ativo:
 
+<<<<<<< HEAD
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             game_ativo = False
@@ -42,6 +47,34 @@ while game_ativo:
         janela.fill((0, 100, 0))
     elif cena == "creditos":
         janela.fill((100, 0, 0))
+=======
+def main():
+    pygame.init()
+    pygame.font.init()
+  
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("WINDOW_TITLE")
+
+    clock = pygame.time.Clock()
+    while game_ativo:
+        clock.tick(FPS)
+        
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                game_ativo = False
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if cena == "inicio":
+                    if botao_jogar.collidepoint(evento.pos):
+                        cena == "primeira_fase"
+                    elif botao_sair.collidepoint(evento.pos):
+                        game_ativo = False
+                    elif botao_creditos.collidepoint(evento.pos):
+                        cena = "creditos"
+        
+
+        if cena == "inicio":
+            janela.blit(tela_inicial, (0, 0))
+>>>>>>> 424c0c9d90a0595e2508a0759b3398733e934a39
 
 
 
