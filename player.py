@@ -69,3 +69,14 @@ class Player:
 
         self.lives -= 1
         self.invulnerable_until = now + 1500
+
+    def draw(self, screen):
+
+        now = pygame.time.get_ticks()
+
+        # Piscar durante a invulnerabilidade
+        if now < self.invulnerable_until:
+            if now // 150 % 2 == 0:
+                return
+
+        pygame.draw.rect(screen, (70, 160, 255), self.rect, border_radius=8)
